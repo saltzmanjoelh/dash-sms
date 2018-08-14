@@ -68,12 +68,15 @@ console.log('waiting for dash button to be pressed...');
 dash.on('detected', () => {
   console.log('Dash button detected!');
   // for now we can ignore the promise as it handles any logging and we've no need to care about when it resolves or rejects
-  sendSms(config.message.to, config.message.from, config.message.body)
+  config.message.to.forEach(function(number) {
+	sendSms(number, config.message.from, config.message.body)
     .then((response) => {
       //
     })
     .catch((err) => {
       //
     });
+  });
+  
 });
 
